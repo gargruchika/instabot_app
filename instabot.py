@@ -74,7 +74,7 @@ def get_own_post():
             image_name = own_media['data'][0]['id'] + '.jpeg'
             image_url = own_media['data'][0]['images']['standard_resolution']['url']
             urllib.urlretrieve(image_url, image_name)
-            print 'Your image has been downloaded!'
+            print (colored('Your image has been downloaded!','green'))
         else:
             print (colored('Post does not exist!','red'))
     else:
@@ -257,6 +257,8 @@ def iterate_through_negative_comments(media_id):
                 blob = TextBlob(comment_text, analyzer=NaiveBayesAnalyzer())
                 if (blob.sentiment.p_neg > blob.sentiment.p_pos):
                     print 'Negative comment : %s' % (comment_text)
+                else:
+                    print 'possitive comment : %s'% (comment_text)
         else:
             print (colored('There are no existing comments on the post!','red'))
     else:
@@ -288,14 +290,14 @@ def min_likes_on_post(insta_username):
                     image_url = user_media['data'][j]['images']['standard_resolution']['url']
                     urllib.urlretrieve(image_url, image_name)                                               # image url is retrieved
                     print 'GET image_url is :%s' % (image_url)
-                    print 'Your image has been downloaded! By clicking above link you can view you the image with minimum number of likes'
+                    print (colored('Your image has been downloaded! By clicking above link you can view you the image with minimum number of likes','green'))
                j=j+1
         else:
-            print 'This account has zero post'
+            print (colored('This account has zero post','red'))
             exit()
 
     else:
-        print 'Status code other than 200 received!'
+        print (colored('Status code other than 200 received!','red'))
         exit()
 
 
